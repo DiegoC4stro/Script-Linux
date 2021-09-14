@@ -1,0 +1,35 @@
+nano /etc/freeradius/3.0/users
+
+DEFAULT Auth-Type := Accept
+================
+
+nano /etc/freeradius/3.0/clients.conf
+
+client dctecsolution {
+	ipaddr = 0.0.0.0/0
+	proto = *
+	secret = DIEGOCASTRO
+	require_message_authenticator = no
+	nas_type         = other
+}
+
+=====================
+Para permitir o usuário com o "@,$##,etc":
+
+#Acesse:
+
+nano /etc/freeradius/3.0/sites-enabled/default
+
+#No campo authorize { comentar com o "#" a linha 262:
+
+Antes:
+
+  filter_username
+
+Agora:
+
+#  filter_username
+
+Por ultimo reiniciar o serviço do freeradius:
+
+systemctl restart freeradius
