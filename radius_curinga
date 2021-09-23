@@ -20,7 +20,7 @@ Para permitir o usuário com o "@,$##,etc":
 
 nano /etc/freeradius/3.0/sites-enabled/default
 
-#No campo authorize { comentar com o "#" a linha 262:
+#No campo authorize { comentar com o "#" a linha 281:
 
 Antes:
 
