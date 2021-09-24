@@ -1,0 +1,14 @@
+root@radius:~# cat /etc/freeradius/3.0/clients.conf
+client concentradores {
+        ipaddr = 0.0.0.0/24
+        proto = *
+        secret = minha senha
+        require_message_authenticator = no
+        nas_type         = other
+}
+
+root@radius:~# cat /etc/freeradius/3.0/users 
+diego Cleartext-Password := "12345"
+	Service-Type = NAS-Prompt-User,
+#	Cisco-AVPair = "shell:priv-lvl=15"
+#Mikrotik-Group = " userprofilename "
