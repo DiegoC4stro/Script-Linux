@@ -6,9 +6,9 @@
 ## e-mail: diegdk@gmail.com
 ## Tel: (84) 994579920
 ##
-## Propósitos:  Assegurar a Integridade do ZABBIX
+## Propósitos:  Assegurar a Integridade do UNBOUND
 ##
-# Criado em: 21/07/2022
+# Criado em: 01/10/2022
 ############################################################################
 ############################################################################
 #
@@ -17,10 +17,10 @@
 #
 IPTABLES="/sbin/iptables"
 CGNAT="100.64.0.0/10"
-TOLEDO="45.160.176.96/27"
-DCSOLUCOES="186.213.0.0/16"
-JRNET1="170.233.122.230"
-JRNET="186.211.186.153/29"
+TOLEDO=""
+DCSOLUCOES=""
+JRNET1=""
+JRNET="1"
 IANA1="10.0.0.0/8"
 IANA2="172.16.0.0/12"
 IANA3="192.168.0.0/16"
