@@ -1,0 +1,58 @@
+##################################################################
+##
+## SCRIPT DE FIREWALL
+##
+## Criado por: Diego Castro
+## e-mail: diegdk@gmail.com
+## Tel: (84) 994579920
+##
+## Propósitos:  Assegurar a Integridade do ZABBIX
+##
+# Criado em: 21/07/2022
+############################################################################
+############################################################################
+#
+#
+# Variáveis
+#
+IPTABLES="/sbin/iptables"
+CGNAT="100.64.0.0/10"
+TOLEDO="45.160.176.96/27"
+DCSOLUCOES="186.213.0.0/16"
+JRNET1="170.233.122.230"
+JRNET="186.211.186.153/29"
+IANA1="10.0.0.0/8"
+IANA2="172.16.0.0/12"
+IANA3="192.168.0.0/16"
+
+
+
+IPTABLES="/sbin/iptables"
+$IPTABLES -t nat -F
+$IPTABLES -F
+$IPTABLES -X
+
+$IPTABLES -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+$IPTABLES -A INPUT -i lo -j ACCEPT
+
+###########IANA###############
+$IPTABLES -A INPUT -s $IANA1 -i enp5s0 -j ACCEPT
+$IPTABLES -A INPUT -s $IANA2 -i enp5s0 -j ACCEPT
+$IPTABLES -A INPUT -s $IANA3 -i enp5s0 -j ACCEPT
+
+############JRNET##############
+$IPTABLES -A INPUT -s $JRNET1 -i enp5s0 -j ACCEPT
+$IPTABLES -A INPUT -s $JRNET -i enp5s0 -j ACCEPT
+
+############CGNAT###############
+$IPTABLES -A INPUT -s $CGNAT -i enp5s0 -j ACCEPT
+#################################
+############TOLEDO###############
+$IPTABLES -A INPUT -s $TOLEDO -i enp5s0 -j ACCEPT
+##################################
+############DC SOLUCOES###########
+$IPTABLES -A INPUT -s $DCSOLUCOES -i enp5s0 -j ACCEPT
+##################################
+
+$IPTABLES -A INPUT -p icmp -j ACCEPT
+$IPTABLES -A INPUT -j DROP
