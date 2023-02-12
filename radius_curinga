@@ -1,6 +1,9 @@
 nano /etc/freeradius/3.0/users
+Limpar arquivo e por:
 
 DEFAULT Auth-Type := Accept
+session-timeout = 14400,
+Termination-Action = RADIUS-Request
 ================
 
 nano /etc/freeradius/3.0/clients.conf
