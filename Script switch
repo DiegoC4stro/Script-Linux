@@ -1,0 +1,44 @@
+# Defina as variáveis de conexão com o switch
+HOST="192.168.220.2"
+USER="admin"
+PASS="xxxxx"
+ENABLE_PASS="xxxxx"
+
+ 
+
+# Conecte-se ao switch via Telnet e aguarde o prompt de login
+/usr/bin/expect <<EOD
+spawn telnet $HOST
+expect "Username:"
+send "$USER\r"
+expect "Password:"
+send "$PASS\r"
+
+ 
+
+# Aguarde o prompt do switch e entre no modo enable
+expect ">"
+send "enable\r"
+expect "Password:"
+send "$ENABLE_PASS\r"
+
+ 
+
+# Aguarde o prompt de enable, execute os comandos "configure terminal" e "show onu status all" e exiba o resultado na tela
+expect "#"
+send "terminal length 0\r"
+expect "#"
+send "configure terminal\r"
+expect "(config)#"
+send "show onu status all\r"
+expect "(config)#"
+set output $expect_out(buffer)
+puts "$output"
+
+ 
+
+# Saia do modo de configuração e do modo enable e encerre a conexão
+send "exit\r"
+expect "#"
+send "exit\r"
+EOD
